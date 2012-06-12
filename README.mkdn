@@ -1,0 +1,71 @@
+Halau: お手軽家計簿アプリケーション
+=====================================
+
+開発に必要なもの
+------------------------------
+
+ * JDK 6.0
+ * Play 2.0.1 http://www.playframework.org/
+ * git (Windowsなら Git Extensions http://code.google.com/p/gitextensions/ がお勧め)
+
+Gitの使い方
+------------------------------
+
+1. git-bashを起動し、プロジェクトをcloneする。
+
+     $ git clone https://github.com/halau/halau.git
+
+すでにcloneずみの場合はpullする
+
+     $ git pull --rebase
+
+2. ファイルを変更したら、git statusで変更を確認する
+
+     $ git status
+     # On branch master
+     # Untracked files:
+     #   (use "git add <file>..." to include in what will be committed)
+     #
+     #       README.mkdn
+     nothing added to commit but untracked files present (use "git add" to track)
+
+3. コミットしたいファイルをaddする
+
+    $ git add README.mkdn
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       new file:   README.mkdn
+    #
+
+4. 適当なコミットメッセージとともにcommitする
+
+    $ git commit -m 'READMEを更新した'
+    [master 08d9742] READMEを更新した
+    1 file changed, 41 insertions(+)
+    create mode 100644 README.mkdn
+
+5. 作業が完了したら他の人に公開するためにpushする
+
+    $ git push
+
+Play!での開発方法
+------------------------------
+
+http://www.slideshare.net/rrrkitamura/play-framework-20参照
+
+1. playを起動する
+
+   $ play run
+
+2. http://localhost:9000 にアクセスする
+
+3. 適当にファイルをいじってブラウザをリロードすると、自動でコンパイルされる
+
+参考文献
+------------------------------
+
+ * Play!Framework http://www.playframework.org/
+ * SCMBC Gitセッション入門 http://www.slideshare.net/bleistift/scmbc-git-10226700
