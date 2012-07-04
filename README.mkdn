@@ -64,6 +64,11 @@ http://www.slideshare.net/rrrkitamura/play-framework-20参照
 
 ### 3. 適当にファイルをいじってブラウザをリロードすると、自動でコンパイルされる
 
+AUTHOR
+-----------------------------
+
+ * Keisuke Yamamoto
+
 参考文献
 ------------------------------
 
