@@ -1,14 +1,24 @@
+@(myForm: Form[models.Item], items : List[models.Item])
+
 @main("トップページ") {
   <h1 class="logo">Halau</h1>
   <div class="input">
-    <form class="well">
-      <input type="text" class="span3" placeholder="使った金額">
-      <input type="text" class="span2" placeholder="種別">
-      <input type="text" class="span2" placeholder="場所">
-      <button type="submit" class="btn">登録</button>
-    </form>
+    @helper.form(action = routes.Application.addMoney) {
+        @helper.inputText(myForm("money"))
+        @helper.inputText(myForm("kind"))
+        @helper.inputText(myForm("location"))
+        <button type="submit" class="btn">登録</button>
+    }
   </div>
   <div class="history">
+    <div class="day">
+      <h2>2012/07/30(火)</h2>
+      <ul>
+      @items.map { item =>
+        <li>[@item.kind]　&yen; @item.money at @item.location</li>
+      }
+      </ul>
+    </div>
     <div class="day">
       <h2>2012/06/12(火)</h2>
       <ul>
