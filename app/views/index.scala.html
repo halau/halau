@@ -3,12 +3,35 @@
 @main("トップページ") {
   <h1 class="logo">Halau</h1>
   <div class="input">
-    @helper.form(action = routes.Application.addMoney) {
-        @helper.inputText(myForm("money"))
-        @helper.inputText(myForm("kind"))
-        @helper.inputText(myForm("location"))
-        <button type="submit" class="btn">登録</button>
-    }
+      <!-- 家計簿情報入力フォーム -->
+      <form action="/addMoney" method="POST" >
+          <table>
+              <tr id="imput_field">
+                  <!-- 分類 -->
+                  <td class=" " id="kind_field">
+                      <dt><label for="kind">kind</label></dt>
+                      <dd>
+                          <input type="text" id="kind" name="kind" value="" >
+                      </dd>
+                  </td>
+                  <!-- 金額 -->
+                  <td class=" " id="money_field">
+                      <dt><label for="money">money</label></dt>
+                      <dd>
+                          <input type="text" id="money" name="money" value="0" >
+                      </dd>
+                  </td>
+                  <!-- 場所 -->
+                  <td class=" " id="location_field">
+                      <dt><label for="location">location</label></dt>
+                      <dd>
+                          <input type="text" id="location" name="location" value="" >
+                      </dd>
+                  </td>
+              </tr>
+          </table>
+          <button type="submit" class="btn">登録</button>
+      </form>
   </div>
   <div class="history">
     <div class="day">
