@@ -35,31 +35,10 @@
   </div>
   <div class="history">
     <div class="day">
-      <h2>2012/07/30(火)</h2>
       <ul>
       @items.map { item =>
-        <li>[@item.kind]　&yen; @item.money at @item.location</li>
+        <li><a href="@routes.Application.edit(item.id)">[@item.kind]　&yen; @item.money at @item.location</a></li>
       }
-      </ul>
-    </div>
-    <div class="day">
-      <h2>2012/06/12(火)</h2>
-      <ul>
-        <li>[娯楽]Macbook Air &yen;96,000 at AppleStore</li>
-        <li>[娯楽]iPad Wifi &yen;35,000 at AppleStore</li>
-      </ul>
-    </div>
-    <div class="day">
-      <h2>2012/06/11(月)</h2>
-      <ul>
-        <li>[仕事]新人歓迎会 &yen;4,000 at ビアガーデン</li>
-        <li>[書籍]Scalaスケーラブルプログラミング &yen;4,000 at ジュンク堂</li>
-      </ul>
-    </div>
-    <div class="day">
-      <h2>2012/06/10(日)</h2>
-      <ul>
-        <li>[食事]お寿司 &yen;2,000 at すしざんまい</li>
       </ul>
     </div>
   </div>

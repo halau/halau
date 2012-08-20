@@ -19,17 +19,29 @@ import java.sql.{ Timestamp => SQLTimestamp }
 
 object ItemDB extends Table[Item]("ITEM") {
 
-  def id = column[String]("ID", O.PrimaryKey)
+  def id = column[Int]("ID", O.PrimaryKey)
   def money = column[Int]("MONEY", O.NotNull)
   def kind = column[Option[String]]("KIND")
   def location = column[Option[String]]("LOCATION")
-  def * = money~kind~location <> (Item, Item.unapply _)
+
+  def * = id~money~kind~location <> (Item, Item.unapply _)
 
   def db = Database.forDataSource(DB.getDataSource())
   
   def add(item : Item) : Unit = db.withSession { implicit db : Session =>
-   ItemDB.insert(item)
+    (money~kind~location).insert(item.money, item.kind, item.location)
   }
+
+  def update(item : Item) : Unit =
+    db.withSession { implicit db : Session =>
+      ItemDB.where( x => x.id is id).update(item)
+    }
+
+  def remove(id : Int) : Unit =
+    db.withSession { implicit db : Session => 
+      ItemDB.where( x => x.id is id).delete
+    }
+
   
   def findAll : List[Item] = db.withSession { implicit db : Session =>
     (for (t <- this; _ <- Query) yield t.*).list
@@ -41,13 +53,13 @@ object ItemDB extends Table[Item]("ITEM") {
             else limit
     (for (t <- this; _ <- Query orderBy Ordering.Desc(t.createdAt)) yield t.*).take(l).list
   }
-
-  def find(id : String) : Option[Activity] =
+*/
+  def find(id : Int) : Option[Item] =
     db.withSession { implicit db : Session =>
-      ActivityDB.where( x => x.id is id).map(_.*).firstOption
+      ItemDB.where( x => x.id is id).map(_.*).firstOption
     }
 
-  def tee[A]( x : A)(action : A => Unit) : A = {
+/*  def tee[A]( x : A)(action : A => Unit) : A = {
     action(x)
     x
   }
